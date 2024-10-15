@@ -1,0 +1,47 @@
+<div class="container mt-4 w-50">
+  <div *ngIf="disableTable" class="spinner-border text-dark " role="status" style="margin-left: 300px">
+    <span class="visually-hidden">Loading...</span>
+  </div >
+  <table *ngIf="!disableTable" class="table table-hover">
+    <thead>
+    <tr class="table table-dark">
+      <th scope="col">Id</th>
+      <th scope="col">Fullname</th>
+      <th scope="col">Following</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let actor of actors" (click)="onClickedRow(actor)" >
+      <td>{{actor.actorId}}</td>
+      <td>{{actor.actorName}}</td>
+      <td>{{actor.actorFollowing | number}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="enableCard" class="row d-flex justify-content-center">
+    <div class="col col-md-9 col-lg-7 col-xl-6" (click)="onClickedCard()">
+      <div class="card" style="border-radius: 15px; width: max-content">
+        <div class="card-body p-4">
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img src="https://www.svgrepo.com/show/296744/human-cannonball-playground.svg"
+                   alt="Generic placeholder image" class="img-fluid" style="width: 110px; margin-top: 10px; border-radius: 10px;">
+            </div>
+            <div class="flex-grow-1 ms-3" style="margin-top: 10px">
+              <h5 class="mb-1">{{ actor.actorName }}</h5>
+              <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+
+                <div class="px-3">
+                  <p class="small text-muted mb-1">Followers</p>
+                  <p class="mb-0">{{ actor.actorFollowing | number }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
